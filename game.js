@@ -3,10 +3,12 @@
 //random number between and including 1 and 3 is generated
 //corresponding string to random number is returned
 
-
+function playGame(){
+let gameNumber = 0;
+    while (gameNumber < 5){
 
 function getComputerChoice() {
- 
+
     let choice = Math.random() * 100 + 1;
 
     if (choice < 33) return "Rock";
@@ -56,36 +58,49 @@ function playRound (humanChoice, computerChoice) {
     else return console.log("Draw.");
 }
 
+function scoreRound (humanWin, computerWin){
+
+    if (humanWin === true){
+        ++humanScore;
+    }
+    else if (computerWin === true) {
+        ++computerScore;
+    }
+    else {}
+}
+
+
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
 
 playRound(humanSelection, computerSelection);
-scoreRound (didHumanWin, didComputerWin);
-
-function scoreRound (humanWin, computerWin){
-
-    let humanScore = 0;
-    let computerScore = 0;
-    
-    if (humanWin === true){
-        humanScore++;
-        return console.log ("Your Score = " + humanScore + " vs " + "The Computers Score = " + computerScore);
-    }
-    else if (computerWin === true) {
-        computerScore++;
-        console.log ("Your Score = " + humanScore + " vs " + "The Computers Score = " + computerScore);
-    }
-    else {
-        console.log ("Your Score = " + humanScore + " vs " + "The Computers Score = " + computerScore);
-    }
-}
-
 
 console.log ("You threw " + humanSelection)
 console.log ("The Computer threw " + computerSelection)
 
+scoreRound (didHumanWin, didComputerWin);
 
+console.log("Your Score = " + humanScore + " vs " + "The Computers Score = " + computerScore)
+    
+++gameNumber;
+    }
+}
 
+function whoWon(){
+    if (humanScore > computerScore){
+        return console.log("You won the match!");
+    }
+    else if (humanScore < computerScore){
+        return console.log("You lost the match.");
+    }
+    else return ("It's a tie.")
+}
+
+let humanScore = 0;
+let computerScore = 0;
+
+playGame();
+whoWon ();
 
 
 
